@@ -185,12 +185,12 @@ class _VoiceMessageState extends State<VoiceMessage>
                 builder: (context, child) {
                   return Positioned(
                     left: _controller!.value,
-                    child: Container(
+                    child: SizedBox(
                       width: noiseWidth,
                       height: 6.w(),
-                      color: widget.me
-                          ? widget.meBgColor.withOpacity(.4)
-                          : widget.contactBgColor.withOpacity(.35),
+                      // color: widget.me
+                      //     ? widget.meBgColor.withOpacity(.4)
+                      //     : widget.contactBgColor.withOpacity(.35),
                     ),
                   );
                 },
