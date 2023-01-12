@@ -169,48 +169,45 @@ class _VoiceMessageState extends State<VoiceMessage>
     );
 
     /// document will be added
-    return Theme(
-      data: newTHeme,
-      child: SizedBox(
-        height: 6.5.w(),
-        width: noiseWidth,
-        child: Stack(
-          clipBehavior: Clip.hardEdge,
-          children: [
-            widget.me ? const Noises() : const ContactNoise(),
-            if (_audioConfigurationDone)
-              AnimatedBuilder(
-                animation:
-                    CurvedAnimation(parent: _controller!, curve: Curves.ease),
-                builder: (context, child) {
-                  return Positioned(
-                    left: _controller!.value,
-                    child: SizedBox(
-                      width: noiseWidth,
-                      height: 6.w(),
-                      // color: widget.me
-                      //     ? widget.meBgColor.withOpacity(.4)
-                      //     : widget.contactBgColor.withOpacity(.35),
-                    ),
-                  );
-                },
-              ),
-            Opacity(
-              opacity: .0,
-              child: Container(
-                width: noiseWidth,
-                color: Colors.amber.withOpacity(1),
-                child: Slider(
-                  min: 0.0,
-                  max: maxDurationForSlider,
-                  onChangeStart: (__) => _stopPlaying(),
-                  onChanged: (_) => _onChangeSlider(_),
-                  value: duration + .0,
-                ),
+    return SizedBox(
+      height: 6.5.w(),
+      width: noiseWidth,
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          widget.me ? const Noises() : const ContactNoise(),
+          if (_audioConfigurationDone)
+            AnimatedBuilder(
+              animation:
+                  CurvedAnimation(parent: _controller!, curve: Curves.ease),
+              builder: (context, child) {
+                return Positioned(
+                  left: _controller!.value,
+                  child: SizedBox(
+                    width: noiseWidth,
+                    height: 6.w(),
+                    // color: widget.me
+                    //     ? widget.meBgColor.withOpacity(.4)
+                    //     : widget.contactBgColor.withOpacity(.35),
+                  ),
+                );
+              },
+            ),
+          Opacity(
+            opacity: .0,
+            child: Container(
+              width: noiseWidth,
+              color: Colors.amber.withOpacity(1),
+              child: Slider(
+                min: 0.0,
+                max: maxDurationForSlider,
+                onChangeStart: (__) => _stopPlaying(),
+                onChanged: (_) => _onChangeSlider(_),
+                value: duration + .0,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
