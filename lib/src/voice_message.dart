@@ -79,12 +79,19 @@ class _VoiceMessageState extends State<VoiceMessage>
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 4.w(), vertical: 2.8.w()),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           children: [
             _playButton(context),
             SizedBox(width: 3.w()),
             _durationWithNoise(context),
             SizedBox(width: 2.2.w()),
+            Text(
+              _remaingTime,
+              style: TextStyle(
+                fontSize: 10,
+                color: widget.me ? widget.meFgColor : widget.contactFgColor,
+              ),
+            )
 
             /// x2 button will be added here.
             // _speed(context),
@@ -131,23 +138,15 @@ class _VoiceMessageState extends State<VoiceMessage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _noise(context),
-          SizedBox(height: .3.w()),
           Row(
             children: [
               if (!widget.played)
                 Widgets.circle(
                   context,
-                  1.w(),
+                  MediaQuery.of(context).size.width * 0.8,
                   widget.waveColor,
                 ),
               SizedBox(width: 1.2.w()),
-              Text(
-                _remaingTime,
-                style: TextStyle(
-                  fontSize: 10,
-                  color: widget.me ? widget.meFgColor : widget.contactFgColor,
-                ),
-              )
             ],
           ),
         ],
