@@ -18,6 +18,7 @@ class VoiceMessage extends StatefulWidget {
     Key? key,
     required this.audioSrc,
     required this.me,
+    required this.noiseWidth,
     this.noiseCount = 27,
     this.meBgColor = AppColors.pink,
     this.contactBgColor = const Color(0xffffffff),
@@ -33,6 +34,7 @@ class VoiceMessage extends StatefulWidget {
 
   final String audioSrc;
   final int noiseCount;
+  final double noiseWidth;
   final Color containerColor;
   final Color meBgColor,
       waveColor,
@@ -51,7 +53,8 @@ class VoiceMessage extends StatefulWidget {
 class _VoiceMessageState extends State<VoiceMessage>
     with SingleTickerProviderStateMixin {
   final AudioPlayer _player = AudioPlayer();
-  final double maxNoiseHeight = 6.w(), noiseWidth = 26.5.w();
+  final double maxNoiseHeight = 6.w();
+  late double noiseWidth;
   Duration? _audioDuration;
   double maxDurationForSlider = .0000001;
   bool _isPlaying = false, x2 = false, _audioConfigurationDone = false;
@@ -62,6 +65,7 @@ class _VoiceMessageState extends State<VoiceMessage>
   @override
   void initState() {
     _setDuration();
+    noiseWidth = widget.noiseWidth;
     super.initState();
   }
 
@@ -83,7 +87,8 @@ class _VoiceMessageState extends State<VoiceMessage>
           children: [
             _playButton(context),
             SizedBox(width: 3.w()),
-            _durationWithNoise(context),
+            // _durationWithNoise(context),
+            _noise(context),
             SizedBox(width: 2.2.w()),
             Text(
               _remaingTime,
@@ -138,17 +143,17 @@ class _VoiceMessageState extends State<VoiceMessage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _noise(context),
-          Row(
-            children: [
-              if (!widget.played)
-                Widgets.circle(
-                  context,
-                  MediaQuery.of(context).size.width * 0.8,
-                  widget.waveColor,
-                ),
-              SizedBox(width: 1.2.w()),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     if (!widget.played)
+          //       Widgets.circle(
+          //         context,
+          //         MediaQuery.of(context).size.width * 0.8,
+          //         widget.waveColor,
+          //       ),
+          //     SizedBox(width: 1.2.w()),
+          //   ],
+          // ),
         ],
       );
 
