@@ -26,7 +26,8 @@ class VoiceMessage extends StatefulWidget {
     this.contactPlayIconColor = Colors.black26,
     this.meFgColor = const Color(0xffffffff),
     this.played = false,
-    required this.containerColor ,
+    required this.containerColor,
+    required this.waveColor,
     this.onPlay,
   }) : super(key: key);
 
@@ -34,7 +35,7 @@ class VoiceMessage extends StatefulWidget {
   final int noiseCount;
   final Color containerColor;
   final Color meBgColor,
-  
+      waveColor,
       meFgColor,
       contactBgColor,
       contactFgColor,
@@ -84,6 +85,7 @@ class _VoiceMessageState extends State<VoiceMessage>
             SizedBox(width: 3.w()),
             _durationWithNoise(context),
             SizedBox(width: 2.2.w()),
+
             /// x2 button will be added here.
             // _speed(context),
           ],
@@ -133,8 +135,11 @@ class _VoiceMessageState extends State<VoiceMessage>
           Row(
             children: [
               if (!widget.played)
-                Widgets.circle(context, 1.w(),
-                    widget.me ? widget.meFgColor : widget.contactFgColor),
+                Widgets.circle(
+                  context,
+                  1.w(),
+                  widget.waveColor,
+                ),
               SizedBox(width: 1.2.w()),
               Text(
                 _remaingTime,
