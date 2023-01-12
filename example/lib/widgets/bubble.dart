@@ -32,6 +32,7 @@ class Bubble extends StatelessWidget {
       ? VoiceMessage(
           audioSrc: 'https://sounds-mp3.com/mp3/0012660.mp3',
           me: index == 5 ? false : true,
+          containerColor: Colors.red,
         )
       : Container(
           constraints: BoxConstraints(maxWidth: 100.w * .7),

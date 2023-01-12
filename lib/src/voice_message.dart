@@ -26,12 +26,15 @@ class VoiceMessage extends StatefulWidget {
     this.contactPlayIconColor = Colors.black26,
     this.meFgColor = const Color(0xffffffff),
     this.played = false,
+    required this.containerColor ,
     this.onPlay,
   }) : super(key: key);
 
   final String audioSrc;
   final int noiseCount;
+  final Color containerColor;
   final Color meBgColor,
+  
       meFgColor,
       contactBgColor,
       contactFgColor,
@@ -67,16 +70,9 @@ class _VoiceMessageState extends State<VoiceMessage>
   Container _sizerChild(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: .8.w()),
-      constraints: BoxConstraints(maxWidth: 100.w() * .7),
+      // constraints: BoxConstraints(maxWidth: 100.w() * .7),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(6.w()),
-          bottomLeft:
-              widget.me ? Radius.circular(6.w()) : Radius.circular(2.w()),
-          bottomRight:
-              !widget.me ? Radius.circular(6.w()) : Radius.circular(1.2.w()),
-          topRight: Radius.circular(6.w()),
-        ),
+        borderRadius: BorderRadius.circular(6),
         color: widget.me ? widget.meBgColor : widget.contactBgColor,
       ),
       child: Padding(
@@ -88,7 +84,6 @@ class _VoiceMessageState extends State<VoiceMessage>
             SizedBox(width: 3.w()),
             _durationWithNoise(context),
             SizedBox(width: 2.2.w()),
-
             /// x2 button will be added here.
             // _speed(context),
           ],
